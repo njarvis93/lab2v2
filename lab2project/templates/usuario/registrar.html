@@ -1,0 +1,156 @@
+{% block content %}
+
+
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		
+
+
+<style>
+	
+body {
+
+	
+	background: #efefef;
+	font-family: 'Open Sans', sans-serif;
+	color: #777;
+}
+
+
+a {
+	color:  #777;
+	font-weight: 600;
+}
+
+.mlogin {
+	margin: 170px auto 0;
+}
+
+.mregister {
+	margin: 80px auto 0;
+}
+
+
+.regtext {
+	font-size: 13px;
+	margin-top: 26px;
+	color: #777;
+
+}
+
+/*= caja que contiene los label
+--------------------------------------------------------*/
+.container {
+	padding: 25px 16px 25px 10px;
+	font-weight: 400;
+	overflow: hidden;
+	width: 350px;
+	height: auto;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+	box-shadow: 0 1px 3px rgba(0,0,0,.13);
+}
+
+
+
+.container h1 {
+	color: #777;
+	text-align: center;
+	font-weight: 300;
+	border: 1px dashed #777;
+	margin-top: 13px;
+}
+
+.container label {
+	color: #777;
+	font-size: 14px;
+}
+
+#login {
+	width: 320px;
+	margin: auto;
+	padding-bottom: 15px;
+}
+
+.container form .input,.container input[type=text],.container input[type=password],.container input[type=email] {
+	background: #fbfbfb;
+	font-size: 24px;
+	line-height: 1;
+	width: 100%;
+	padding: 3px;
+	margin: 0 6px 5px 0;
+	outline: none;
+	border: 1px solid #d9d9d9;
+}
+
+
+
+/*= botones
+--------------------------------------------------------*/
+
+.button
+{
+      border: solid 1px  #777;
+      background:  #64ffda;
+      padding: 7px 12px;
+      -webkit-border-radius:4px;
+  	 -moz-border-radius:4px;
+      border-radius:4px;
+	  float: right;
+	  cursor: pointer;
+}
+
+</style>
+
+</head>
+
+<form method="post"> 
+{% csrf_token %}
+	<body
+
+	
+		  <div class="container mregister">
+ 			<div id="login">
+			    <h1>Registrar</h1>
+				<form name="registerform" id="registerform" action="register" method="post">
+					 <p>
+						 <label for="user_login">Nombre <br />
+   						 <input type="text" name="nombre" id="nombre" class="input" size="32" value="" /></label>
+ 					 </p>
+
+ 					  <p>
+ 						  <label for="user_pass">Apellidos<br />
+ 						  <input type="text" name="apellido" id="apellido" class="input" value="" size="20"  /></label>
+					  </p>
+
+ 					   <p>
+						  <label for="user_pass">Correo electronico<br />
+						   <input type="email" name="email" id="email" class="input" value="" size="32"
+ 						  /></label>
+					   </p>
+
+					   <p>
+						   <label for="user_pass">Contraseña (6 o mas caracteres)<br />
+ 				           <input type="password" name="contraseña" id="contraseña" class="input" value="" size="32" /></label>
+					   </p>
+
+					   <p class="submit">
+ 							<input type="submit" name="register" id="register" class="button" value="Registrar" />
+ 					   </p>
+
+ 						<p class="regtext">Ya eres usuario? <a href="inicio.html" >Iniciar sesion</a></p>
+
+				</form>
+			  </div>
+
+ 		  </div> 
+   
+    
+	</body>
+	</form>
+
+{% endblock  %}

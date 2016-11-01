@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Ingresar - Medical Halo{% endblock %}
+
+{% block body %}
+
+    <form class="col s12" method="post" style="margin-top: 100px;">
+        {% csrf_token %}
+
+        {% if form.errors %}
+
+       <p>error</p>
+
+
+
+
+        {% endif %}
+        <div class="row">
+            <div class="input-field col s12 m12">
+                <input id="user" type="text" class="validate" name="username">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m12">
+                <input id="password" type="password" class="validate" name="password">
+
+            </div>
+
+        </div>
+
+        <div class="right-align">
+
+            <button class="" type="submit" name="action">Entrar
+
+            </button>
+
+
+        </div>
+
+        <p>
+            <a href="">¿Olvidaste tu contraseña?</a>
+        </p>
+
+
+    </form>
+
+
+
+{% endblock %}

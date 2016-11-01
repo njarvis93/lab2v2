@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<link rel=Stylesheet href="css/estilos.css" type="text/css">
+	</head>
+
+	<form method="post"> 
+{% csrf_token %}
+	<body>
+ <nav>
+ 	
+ 
+		<div id="marco">
+
+			<div class="container mlogin">
+			 <div id="login">
+				 <h1>Usuario</h1>
+
+				<form name="loginform" id="loginform" action="" method="POST">
+					 <p>
+					 <label for="user_login">Correo electronico<br />
+					 <input type="text" name="username" id="username" class="input" value="" size="20" /></label>
+					 </p>
+
+ 					 <p>
+					 <label for="user_pass">Contraseña<br />
+					 <input type="password" name="password" id="password" class="input" value="" size="20" /></label>
+					 </p>
+
+					 <p class="submit">
+ 					 <input type="submit" name="login" class="button" value="Entrar" />
+ 					 </p>
+
+ 					 <p class="regtext">No estas registrado? <a href="registrar.html" >Registrate Aquí</a>!</p>
+				</form>
+				
+			</div>
+
+		</div>
+		</div>
+	</nav>
+</body>
+</form>
+</html>

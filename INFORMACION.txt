@@ -1,0 +1,117 @@
+DJANGO: MVC MTV
+
+==================== Comandos Basicos Django ====================
+
+Crear Poyecto:
+django-admin.py startproject NOMBREDELPROYECTO (Para crear nuestra aplicación web)
+django-admin.py startapp NOMBREDELAPP (Para crear nuestra aplicación en django)
+django-admin.py createsuperuser CREAR SUPER USUARIO
+Nota:manage.py es un empaquetador de django-admin.py
+
+Correr Proyecto:
+./manage.py runserver
+./manage.py runserver 0.0.0.0:8000 (compartir)
+
+./manage.py (muestra los diferentes tipos de comandos)
+
+En el terminal ejecutar los siguientes comandos:
+./manage.py createsuperuser (Para crear el usuario de administrador)
+./manage.py makemigrations
+./manage.py migrate
+./manage.py shell (pruebas)
+
+Exportar based de datos
+./manage.py dumpdata > bd.json
+Importar base de datos
+./manage.py loaddata bd.json
+
+Objeto.objects.create(atributo=atributo)
+
+==================== Celery ==============
+
+sudo apt-get install rabbitmq-server
+pip install celery
+celery -A sicoex worker -B -l info
+
+==================== Comandos Basicos ==============
+
+mostrar ip: ifconfig
+Editor texto: nano
+Crear archivo: touch archivo.ext
+Crear carpeta: mkdir
+
+PYTHON:
+python (Entrar en python)
+killall python (matar python)
+
+==================== Instalar ====================
+
+Nota: Explicar de forma Breve cada install y recordar actualizar versiones (--upgrade)
+
+sudo apt-get install python-pip
+sudo pip install --upgrade pip
+sudo easy_install pip
+sudo apt-get update
+sudo apt-get install MYSQL-server
+sudo apt-get install python-setuptools python-dev build-essential
+
+sudo pip install MySQL-python
+sudo pip install Django
+sudo pip install Pillow
+
+==================== Virtualenv  ====================
+
+pip freeze > requirements.txt
+workon virtualenv_ve
+pip install -r requirements.txt
+nano requirements.txt
+pip freeze
+mkvirtualenv virtualenv_ve (Crear virtualenv_ve)
+
+==================== Templates ====================
+En templates van solamente html, los archivos estaticos
+(imagenes, css, javascript, etc) van en la carpeta static.
+
+Para incluir un archivo estatico en un html se usa
+{% static "ruta/en/static/archivo.extension" %}
+
+Ejemplos:
+
+<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+<img source="{% static "img/nombre_imagen.jpg" %}"/>
+
+Para Heredar:
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+{% block title %}{% endblock %}
+{% block css_adicional %} {% endblock %}
+{% block header %}{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block js_adicional %}{% endblock %}
+
+==================== DB ====================
+
+MYSQL:
+
+Ingresar a base de datos mysql: mysql -uroot -p
+Crear la base de datos del proyecto: create database [nombre_base_de_datos];
+Crear la base de datos del proyecto: create database <nombre db> DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+Eliminar la base de datos del proyecto: drop database [nombre_base_de_datos];
+Eliminar una tabla de la base de datos del proyecto: DROP TABLE [Nombre_table]
+
+Mostrar las base de datos en el servidor: show databases;
+Mostrar las tablas de mi base de datos: SHOW FULL TABLES FROM [nombre_base_de_datos];
+
+Entrar a una base de datos en especifico: use [nombre_base_de_datos];
+Mostrar las tablas de mi base de datos: SHOW TABLES;
+Mostrar campos de una tabla: DESCRIBE [tabla];
+Limpiar campos de una tabla: delete from nombre_tabla
+
+# To export to file (data only)
+mysqldump -u [user] -p[pass] --no-create-info mydb > mydb.sql
+# To export to file (structure only)
+mysqldump -u [user] -p[pass] --no-data mydb > mydb.sql
+# To import to database
+mysql -u [user] -p[pass] mydb < mydb.sql
