@@ -19,4 +19,8 @@ urlpatterns = [
     url(r'^edit/(?P<pk>\d+)/$', login_required(CitaUpdate.as_view()), name='url_edit'),
     url(r'^delete/(?P<pk>\d+)/$', login_required(CitaDelete.as_view()), name='url_delete'),
 
+    #url de Medico
+    url(r'^informacion', medico_info, name='info'),
+    url(r'^nuevo_medico', MedicoCreate.as_view(), name='medico_crear'),
+
 ]

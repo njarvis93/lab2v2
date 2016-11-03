@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Nuevo Medico -Medical Halo
+{% endblock %}
+
+{% block titulo %}
+	Registrar Medico
+{% endblock%}
+
+{% block contenido %}
+    <form method="post">
+        <div class="section landing-section"><br>
+                <h2 class="text-center title">Ingresa tus datos y unete a nuestra red</h2> <h1 class="text-center title">Medic Halo!</h1>
+                <!-- INFORMACION DEL MEDICO-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group label-floating">
+                        <label class="control-label" for={{ form.nombe.name }}>{{ form.nombre.label }}</label>
+                        {{ form.nombre }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <label for={{ form.telefono.name }} class="control-label">{{ form.telefono.label }}</label>
+                        {{ form.telefono }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group label-floating">
+                        <label class="control-label" for={{ form.apellido.name }}>{{ form.apellido.label }}</label>
+                        {{ form.apellido }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <label for={{ form.nro_registro.name }} class="control-label">{{ form.nro_registro.label }}</label>
+                        {{ form.nro_registro }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group label-floating">
+                        <label for={{ form.direccion.name }} class="control-label">{{ form.direccion.label }}</label>
+                        {{ form.direccion }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label" for={{ form.fecha_nacimiento.name }}>{{ form.fecha_nacimiento.DateInput }}</label>
+                        {{ form.fecha_nacimiento }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+{% endblock %}

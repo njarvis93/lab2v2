@@ -152,3 +152,14 @@ class buscarPaciente3(DetailView):
 
 class listas_especialidades(ListView):
     model = Especialidad
+
+# ----- VIEWS del MEDICO --------------------
+
+def medico_info(request):
+	return render(request, 'medico/perfil-medico.html')
+
+class MedicoCreate(CreateView):
+	model = Medico
+	form_class = MedicoForm
+	templeta_name = 'medico/medico_form.html'
+	success_url = reverse_lazy('medico:info')

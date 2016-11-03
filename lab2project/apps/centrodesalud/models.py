@@ -46,13 +46,19 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     sexo = models.CharField(verbose_name=_('Sexo'), max_length=20)
     imagen_perfil = models.ImageField(blank=True, null=True, upload_to='img/perfil/usuario/',
                                       verbose_name=_('Imagen de Perfil'))
+    descripcion = models.TextField(verbose_name=_('Descripcion'))
+
+    tipo_user = models.TextField(verbose_name=_('Tipo de usuario'))
+
     objects = UserManager()
+
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'cedula', 'fecha_nacimiento', 'nombres', 'apellidos']
+    REQUIRED_FIELDS = ['username', 'cedula', 'fecha_nacimiento', 'nombres', 'apellidos', 'tipo_usuario']
 
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
+        abstract = True
 
     def __unicode__(self):
         return self.get_full_name() + ('_') + self.cedula
@@ -107,13 +113,8 @@ class Especialidad(models.Model):
     area = models.CharField(max_length=20)
 
 
-class Medico(models.Model):
-    nro_registro = models.CharField(max_length=10, primary_key=True)
-    nombre = models.CharField(max_length=20)
-    apellido = models.CharField(max_length=20)
-    telefono = models.CharField(max_length=12)
-    direccion = models.TextField(max_length=50)
-    fecha_nacimiento = models.DateField()
+class Medico(models.Usuario):
+    nro_registro = models.CharField(max_length=10)
     especialidad = models.ManyToManyField(Especialidad)
     clinica = models.ManyToManyField(Clinica)
 
@@ -121,12 +122,8 @@ class Medico(models.Model):
         return '%s' % (self.nombre)
 
 
-class Paciente(models.Model):
-    cedula = models.CharField(max_length=12, primary_key=True)
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    fecha_nacimiento = models.DateField()
-    telefono = models.CharField(max_length=12)
+class Paciente(models.Usuario):
+
     peso = models.IntegerField()
     estatura = models.IntegerField()
 

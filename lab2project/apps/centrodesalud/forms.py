@@ -80,11 +80,49 @@ class MedicoForm(forms.ModelForm):
     class Meta:
         model = Medico
         fields = [
+            'username',
+            'nro_registro',
             'nombre',
+            'apellido',
+            'telefono',
+            'direccion',
+            'fecha_nacimiento',
+            'especialidad',
+            'clinica',
+            'descripcion',
+            'estudios',
+            'email',
+            'tipousuario',
         ]
         labels = {
-            'nombre': 'Medico',
+            'username' : 'Nombre de Usuario',
+            'nro_registro': 'Numero de su Registro Medico',
+            'nombre': 'Nombre',
+            'apellido': 'Apellido',
+            'telefono': 'Telefono',
+            'direccion': 'Direccion',
+            'fecha_nacimiento': 'Fecha de nacimiento',
+            'especialidad': 'Especialidades',
+            'clinica': 'Clinicas',
+            'descripcion': 'Descripcion',
+            'estudios': 'Estudios',
+            'email': 'Correo',
+            'photo': 'Imagen',
+            'tipousuario' : 'Tipo de usuario',
         }
         widgets = {
-            'nombre': forms.Select(attrs={'class':'form-control'}),
+            'username': forms.Select(attrs={'class':'form-control'}),
+            'nro_registro': forms.TextInput(attrs={'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control'}),
+            'direccion': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control'}),
+            'especialidad': forms.CheckboxSelectMultiple(),
+            'clinica': forms.CheckboxSelectMultiple(),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
+            'estudios': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'photo': forms.ClearableFileInput(), # ClearableFileInput
+            'tipousuario' : forms.CheckboxChoiceInput(),
         }
