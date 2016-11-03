@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-import settings
+from lab2project import settings
 from django.conf.urls.static import static
 from django.conf.urls import url,include
 from django.contrib import admin

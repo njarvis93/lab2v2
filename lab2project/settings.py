@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'laboratorio2',
         'USER':'postgres',
-        'PASSWORD':'postgres',
+        'PASSWORD':'12345',
         'HOST':'localhost',
         'PORT':5432,
     }
@@ -126,15 +126,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "lab2project/static/"),
-]
+##STATICFILES_DIRS = [
+##   os.path.join(BASE_DIR, 'lab2project/static'),
+##]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'lab2project/media')
 
-#STATICFILES_DIRS = (os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'lab2project/static'),)
 
 AUTH_USER_MODEL = 'centrodesalud.Usuario'
 

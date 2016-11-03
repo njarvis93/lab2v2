@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Mis Citas - Medical Halo
+{% endblock %}
+
+
+{% block body %}
+
+<div class="wrapper">
+	<div class="header header-filter" style="background-image: url({% static 'images/fondo2.jpg' %});">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h1 class="title text-center"><font color="white">Mis Citas</font></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- you can use the class main-raised if you want the main area to be as a page with shadows -->
+	<div class="main main-raised">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2"> 
+						<div class="fixed-section" data-spy="affix" data-offset-top="340">
+							<ul>
+								<li>
+                                    <a href="#">Nueva Cita</a>
+								</li>
+								<li>
+									<a href="#enfermedades">Enfermedades</a>
+								</li>
+								<br><br><br><br><br>
+								<li>
+									<a href="#configuracion">Configuraciones</a>
+								</li>
+								<li>
+									<a href="#logout">Salir</a>
+								</li>
+							</ul> 
+						</div>
+					</div><!-- fin col-md-2 -->
+	<!-- Informacion de todas la citas de un paciente -->
+	<!-- Propio de esta vista -->
+	<div class="col-md-10">
+        {% csrf_token %}
+        <h4>Historial de Citas</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Clinica</th>
+
+                    <th>Médico</th>
+                    <th>Fecha</th>
+                    <th class="text-right">Hora</th>
+                    <th class="text-right">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in object_list %}
+                 <tr>
+                     <td>{{ cita.get_tipo_cita }}</td>
+                     <td rel="tooltip" title="{{ cita.sucursal.direccion }}">{{ cita.sucursal.clinica.nombre }}</td>
+                     <td>{{ cita.medico.nombre }}</td>
+                     <td>{{ cita.fecha }}</td>
+                     <td class="text-right"></td>
+                     <td class="td-actions text-right">
+                            <a type="button" rel="tooltip" title="Editar Cita" class="btn btn-success btn-simple btn-xs" href="{% url 'url_edit' cita.id %}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a type="button" rel="tooltip" title="Eliminar Cita" class="btn btn-danger btn-simple btn-xs" href="{% url 'url_delete' cita.id %}">
+                                <i class="fa fa-times"></i>
+                            </a>
+                     </td>
+                 </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+	</div><!-- fin col-md-10 -->
+				</div> <!-- fin row -->
+			</div> <!-- fin container -->
+		</div> <!-- fin section -->
+	</div><!-- fin el main main-raised -->
+</div>
+
+
+{% endblock %}
