@@ -46,9 +46,18 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     sexo = models.CharField(verbose_name=_('Sexo'), max_length=20)
     imagen_perfil = models.ImageField(blank=True, null=True, upload_to='img/perfil/usuario/',
                                       verbose_name=_('Imagen de Perfil'))
+    tipo_usuario = models.CharField(max_length=20, verbose_name=_('Tipo de usuario'))
+    descripcion = models.TextField(max_length=300, blank=True, null=True, verbose_name=_('Descripciones'))
+
     objects = UserManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'cedula', 'fecha_nacimiento', 'nombres', 'apellidos']
+    REQUIRED_FIELDS = ['username', 'cedula', 'fecha_nacimiento', 'nombres', 'apellidos', 'tipo_usuario']
+
+    #Datos propios del medico
+    nro_registro = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('Nro de Registro'))
+   # especialidad = models.ManyToManyField(Especialidad, blank=True, null=True)
+    #clinica = models.ManyToManyField(Clinica, blank=True, null=True, verbose_name=_('Clinicas'))
+
 
     class Meta:
         verbose_name = _('user')
