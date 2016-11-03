@@ -23,7 +23,7 @@
 						<div class="fixed-section affix" data-spy="affix" data-offset-top="340">
 							<ul>
 								<li>
-									<a href="#citas">Citas</a>
+									<a href="{% url 'url_miscitas' %}">Citas</a>
 								</li>
 								<li>
 									<a href="#enfermedades">Enfermedades</a>
@@ -45,117 +45,56 @@
 			<h2>Información de la Cita</h2>
 			<br>
 				<div class="row">
-					<div class="col-md-2">
-						<div class="form-group label-floating">
-						<label class="control-label" for="{{ form.fecha.name }}">{{ form.fecha.label }}</label>
-                            {{ form.fecha }}
-						<input class="datepicker form-control" type="text" value="{{ form.fecha }}"/>
-						</div>
-					</div>
-					<div class="col-md-2 dropdown">
-                        <label class="control-label" for="{{ form.hora.name }}">{{ form.hora.label }}</label>
-                        {{ form.hora }}
-						<a href="" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
-	                    	Hora
-	                    	<b class="caret"></b>
-	                	</a>
-	                	<ul class="dropdown-menu">
-	                    	<li><a href="">10:00 am</a></li>
-	                    	<li><a href="">2:00 pm</a></li>
-	                    	<li><a href="">4:00 pm</a></li>
-	                	</ul>
+					<div class="col-md-4">
+						<label class="control-label" for="{{ form.tipo.name }}">{{ form.tipo.label }}</label>
+					    {{ form.tipo }}
 					</div>
 					<div class="col-md-4">
-						<label class="control-label" for="{{ form.tipo.numerator }}">{{ form.tipo.label }}</label>
-						<div class="radio">
-
-                            {% if form.tipo == 1 %}
-                               <label>
-								    <input type="radio" name="optionsRadios" checked>
-								    {{ form.tipo }}
-							    </label>
-                                <label>
-								    <input type="radio" name="optionsRadios">
-								    Entrega de Examenes
-							    </label>
-                            {% else %}
-                                <label>
-								    <input type="radio" name="optionsRadios">
-								    Consulta
-							    </label>
-                                <label>
-								    <input type="radio" name="optionsRadios" checked>
-								    Entrega de Examenes
-							    </label>
-                            {% endif %}
-
-
-						</div>
+                        <label class="control-label" for="{{ form.especialidad.name }}">{{ form.especialidad.label }}</label>
+                        {{ form.especialidad }}  <!-- Especialidad-->
 					</div>
-					<div class="col-md-4 dropdown">
-        <label class="control-label" for="{{ form3.nombre.name }}">{{ form3.nombre.label }}</label>
-    {{ form3.nombre }}
-						<a href="" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
-	                    	Especialidad
-	                    	<b class="caret"></b>
-	                	</a>
-	                	<ul class="dropdown-menu">
-	                    	<li><a href="">Especialidad 1</a></li>
 
-	                	</ul>
+                    <div class="col-md-4 dropdown">
+                        <label class="control-label" for="{{ form.medico.name }}">{{ form.medico.label }}</label>
+						 {{ form.medico }} <!-- Medico -->
 					</div>
 				</div> <!-- fin row -->
                 <br><br>
 				<div class="row">
-                <label class="control-label" for="{{ form4.nombre.name }}">{{ form4.nombre.label }}</label>
-                    {{ form4.nombre }}
-					<div class="col-md-6 dropdown">
-						<a href="" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
-	                    	Medico
-	                    	<b class="caret"></b>
-	                	</a>
+                     <div class="col-md-6 dropdown">
+                        <label class="control-label" for="{{ form.sucursal.name }}">{{ form.sucursal.label }}</label>
+                        {{ form.sucursal }} <!-- Centro de Salud-->
+					</div>
+                    <div class="col-md-3">
+						<div class="form-group">
+					    	<label class="control-label" for="{{ form.fecha.name }}">{{ form.fecha.label }}</label>
+                                {{ form.fecha }} <!-- Fecha de la cita -->
+						</div>
+					</div>
+					<div class="col-md-3">
+                        <label class="control-label" for="{{ form.hora.name }}">{{ form.hora.label }}</label>
+                        {{ form.hora }} <!-- Hora de la cita -->
+					</div>
 
-	                	<ul class="dropdown-menu">
-	                    	<li><a href="">Medico A</a></li>
-	                    	<li><a href="">Medico B</a></li>
-	                    	<li><a href="">Medico C</a></li>
-	                    	<li class="divider"><a href="">Cualquiera</a></li>
-	                	</ul>
-					</div>
-					<div class="col-md-6 dropdown">
-                        <label class="control-label" for="{{ form6.nombre.name }}">{{ form6.nombre.label }}</label>
-                        {{ form6.nombre }}
-						<a href="" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
-						<i class="material-icons">local_hospital</i>
-	                    	Centro de Salud
-	                    	<b class="caret"></b>
-	                	</a>
-	                	<ul class="dropdown-menu">
-	                    	<li><a href="">Clinica A</a></li>
-	                    	<li><a href="">Hospital 1</a></li>
-	                    	<li><a href="">Hospital 2</a></li>
-	                	</ul>
-					</div>
 				</div><!-- fin de row -->
 				<div class="row">
-					<div class="col-md-10">
-						<div class="form-group label-floating">
+					<div class="col-md-8">
+						<div class="form-group">
 						<label class="control-label" for="{{ form5.direccion.name }}">{{ form5.direccion.label }}</label>
                             {{ form5.direccion }}
-						<input type="text" class="form-control">
 						</div>
 					</div>
 					<div class="col-md-2">
-						<div class="form-group label-floating">
+						<div class="form-group">
 						<label class="control-label"for="{{ form5.telefono.name }}" >{{ form5.telefono.label }}</label>
                             {{ form5.telefono }}
-						<input type="text" class="form-control">
 						</div>
 					</div>
 				</div><!-- fin row -->
 				<div class="row">
 					<div class="col-md-12">
-						<textarea class="form-control" placeholder="{{ form.descripcion_sintomas.label }}" rows="4" >{{ form.descripcion_sintomas }}</textarea>
+                        <label class="control-label" for="{{ form.descripcion_sintomas.name }}">{{ form.descripcion_sintomas.label }}</label>
+                        {{ form.descripcion_sintomas }}
 					</div>
 				</div><!-- fin row -->
 				<div class="row" align="center">

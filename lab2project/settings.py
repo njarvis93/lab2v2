@@ -24,6 +24,8 @@ SECRET_KEY = 'blow!cd^@eivcyu2=81kywj#beg$al+&3zg5=b_rh6$(@^7mgf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATES_DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
@@ -133,7 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'lab2project/media')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'lab2project/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'lab2project/static'),)
 
 AUTH_USER_MODEL = 'centrodesalud.Usuario'
 

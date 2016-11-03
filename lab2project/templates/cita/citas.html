@@ -66,7 +66,7 @@
                      <td rel="tooltip" title="{{ cita.sucursal.direccion }}">{{ cita.sucursal.clinica.nombre }}</td>
                      <td>{{ cita.medico.nombre }}</td>
                      <td>{{ cita.fecha }}</td>
-                     <td class="text-right"></td>
+                     <td class="text-right">{{ cita.hora }}</td>
                      <td class="td-actions text-right">
                             <a type="button" rel="tooltip" title="Editar Cita" class="btn btn-success btn-simple btn-xs" href="{% url 'url_edit' cita.id %}">
                                 <i class="fa fa-edit"></i>

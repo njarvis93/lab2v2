@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Error Page
+{% endblock title %}
+
+{% block body %}
+       <div class="wrapper">
+            <div class="header header-filter" style="background-image: url({% static 'images/fondo2.jpg' %});">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <h1 class="title text-center"><font color="white">Error! :(</font></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    <h1> No fue posible completar la operación</h1>
+{% endblock body %}

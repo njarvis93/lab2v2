@@ -93,7 +93,7 @@ class Sucursal(models.Model):
     clinica = models.ForeignKey(Clinica, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s' % (self.clinica.nombre)
+        return self.clinica.nombre
 
 
 class Tratamiento(models.Model):
@@ -105,6 +105,9 @@ class Tratamiento(models.Model):
 class Especialidad(models.Model):
     nombre = models.CharField(max_length=20)
     area = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nombre
 
 
 class Medico(models.Model):
@@ -118,7 +121,7 @@ class Medico(models.Model):
     clinica = models.ManyToManyField(Clinica)
 
     def __str__(self):
-        return '%s' % (self.nombre)
+        return self.nombre + self.apellido
 
 
 class Paciente(models.Model):
@@ -131,7 +134,7 @@ class Paciente(models.Model):
     estatura = models.IntegerField()
 
     def __str__(self):
-        return '%s' % (self.nombre)
+        return self.nombre + self.apellido
 
 
 # Create your models here.
@@ -143,8 +146,8 @@ class Cita(models.Model):
     hora = models.TimeField()
     descripcion_sintomas = models.TextField(null=True, blank=True)
     tipo = models.IntegerField(null=False, blank=False)  # 1. Consulta 2. Entrega de Resultados
-    estado = models.CharField(max_length=20) # 1=Programada, 2=Cancelada, 3=En Progreso
-
+    estado = models.CharField(max_length=20)  # 1.Programada, 2.Cancelada, 3.En Progreso
+    especialidad = models.ForeignKey(Especialidad, null=True, blank=True, on_delete=models.CASCADE)
     def get_absolute_url(self):
         return reverse('url_miscitas')
 
@@ -157,6 +160,12 @@ class Cita(models.Model):
     def get_estado(self):
         estados = {'1': 'Programada', '2': 'Cancelada', '3': 'En progreso'}
         return estados[self.estado]
+
+    def __str__(self):
+        return '%d' % self.id
+
+    tipos = (('1', 'Consulta'), ('2', 'Entrega de Resultados'))
+
 
 
 # Create your models here.

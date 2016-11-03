@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+   Confirmar - Medical Halo
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+	<div class="header header-filter" style="background-image: url({% static 'images/fondo2.jpg' %});">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h1 class="title text-center"><font color="white">Confirmar eliminación</font></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+    <form action="" method="post">{% csrf_token %}
+        <p>Borrar Cita nro.{{ object }}?</p>
+        <input type="submit" value="Confirm" class="btn btn-danger"/>
+        <a class='btn btn-default' href="{% url 'url_miscitas' %}">Cancelar</a>
+    </form>
+    </div>
+{% endblock %}
