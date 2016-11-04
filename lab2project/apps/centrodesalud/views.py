@@ -31,8 +31,6 @@ class CitaCreate(CreateView):
     template_name = 'cita/cita.html'
     form_class = CitaForm
     second_form_class = PacienteForm
-
-
     success_url = reverse_lazy('url_miscitas')
 
     def get_context_data(self, **kwargs):
@@ -47,14 +45,14 @@ class CitaCreate(CreateView):
         self.object = self.get_object
         form = self.form_class(request.POST)
         form2 = self.second_form_class(request.POST)
-
         if form.is_valid() and form2.is_valid():
             cita = form.save(commit=False)
-            cita.paciente = form2.save(commit=False)
+            cita.paciente = form2.save()
             cita.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form, form2=form2))
+
 
 class CitaUpdate(UpdateView):
     model = Cita
@@ -93,7 +91,7 @@ class CitaUpdate(UpdateView):
             form.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
-            return render_to_response('cita/error.html', {'form': form})
+            return render_to_response('error.html', {'form': form})
 
 
 
@@ -102,10 +100,12 @@ class CitaListar(ListView):
     template_name = 'cita/citas.html'
     paginate_by = 5
 
+
 class CitaDelete(DeleteView):
     model = Cita
     template_name = 'cita/cita_confirm_delete.html'
     success_url = reverse_lazy('url_miscitas')
+
 
 class buscarPaciente3(DetailView):
     model = Paciente
@@ -115,8 +115,75 @@ class buscarPaciente3(DetailView):
 class listas_especialidades(ListView):
     model = Especialidad
 
-def get_especialidad():
-    especialidades = ()
-    for especialidad in Especialidad.objects.all():
-        especialidades.__add__(especialidad.pk, especialidad.nombre)
-    return especialidades
+
+class SucursalCreate(CreateView):
+    model = Sucursal
+    template_name = 'clinica/clinica_form.html'
+    form_class = SucursalForm
+    second_form_class = ClinicaForm
+    success_url = reverse_lazy('url_clinicas')
+
+    def get_context_data(self, **kwargs):
+        context = super(SucursalCreate, self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        if form.is_valid() and form2.is_valid():
+            sucursal = form.save(commit=False)
+            sucursal.clinica = form2.save()
+            sucursal.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form, form2=form2))
+
+
+class SucursalUpdate(UpdateView):
+    model = Sucursal
+    second_model = Clinica
+    template_name = 'clinica/clinica_form.html'
+    form_class = SucursalForm
+    second_form_class = ClinicaForm
+    success_url = reverse_lazy('url_clinicas')
+
+    def get_context_data(self, **kwargs):
+        context = super(SucursalUpdate, self).get_context_data(**kwargs)
+        pk = self.kwargs.get('pk', 0)
+        sucursal = self.model.objects.get(id=pk)
+        clinica = self.second_model.objects.get(id=sucursal.clinica.pk)
+        if 'form' not in context:
+            context['form'] = self.form_class()
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(instance=clinica)
+        context['id'] = pk
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        id_sucursal = kwargs['pk']
+        sucursal = self.model.objects.get(id=id_sucursal)
+        clinica = self.second_model.objects.get(id=sucursal.clinica.pk)
+        form = self.form_class(request.POST, instance=sucursal)
+        form2 = self.second_form_class(request.POST, instance=clinica)
+        if form.is_valid() and form2.is_valid():
+            form.save()
+            form2.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return render_to_response('error.html', {'form': form, 'form2': form2})
+
+
+class SucursalDelete(DeleteView):
+    model = Sucursal
+    template_name = 'clinica/clinica_delete.html'
+    success_url = reverse_lazy('url_clinicas')
+
+class SucursalListar(ListView):
+    model = Sucursal
+    template_name = 'clinica/clinica_list.html'

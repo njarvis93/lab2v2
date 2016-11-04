@@ -42,3 +42,39 @@ class PacienteForm(forms.ModelForm):
         ]
 
 
+class ClinicaForm(forms.ModelForm):
+    class Meta:
+        model = Clinica
+        tipos=(('1','Publica'), ('2', 'Privada'))
+        fields = [
+            'nombre',
+            'tipo',
+        ]
+        labels = {
+            'nombre': 'Nombre de la Clinica',
+            'tipo': 'Tipo de Clinica',
+        }
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'tipo': forms.Select(attrs={'class': 'form-control'}, choices=tipos)
+        }
+
+
+class SucursalForm(forms.ModelForm):
+    class Meta:
+        model = Sucursal
+        fields = [
+            'direccion',
+            'telefono',
+            'director',
+        ]
+        labels = {
+            'direccion': 'Dirección',
+            'telefono': 'Telefono de Contacto',
+            'director': 'Director',
+        }
+        widgets = {
+            'direccion': forms.Textarea(attrs={'class': 'form-control', 'rows': '2'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control'}),
+            'director': forms.TextInput(attrs={'class': 'form-control'}),
+        }

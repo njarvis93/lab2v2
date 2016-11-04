@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Registro citas - Medical Halo{% endblock %}
+{% block title %} Medical Halo{% endblock %}
 
 {% block body %}
 
@@ -12,7 +12,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<h1 class="title text-center">Registro Citas</h1>
+					<h1 class="title text-center">Bienvenido a Medical Halo</h1>
 				</div>
 			</div>
 		</div>
@@ -26,17 +26,14 @@
 						<div class="fixed-section affix" data-spy="affix" data-offset-top="340">
 							<ul>
 								<li>
-									<a href="#citas">Citas</a>
+									<a href="{% url 'url_miscitas' %}">Citas</a>
 								</li>
 								<li>
-									<a href="#enfermedades">Enfermedades</a>
+									<a href="{% url 'url_clinicas' %}">Clinicas</a>
 								</li>
-								<br><br><br><br><br>
+								<br><br><br><br>
 								<li>
-									<a href="#configuracion">Configuraciones</a>
-								</li>
-								<li>
-									<a href="#logout">Salir</a>
+									<a href="#">Salir</a>
 								</li>
 
 
